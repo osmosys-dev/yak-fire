@@ -1,0 +1,7 @@
+{
+  "name": "yak-fire",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
