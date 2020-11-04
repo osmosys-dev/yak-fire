@@ -12,38 +12,45 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent implements OnInit {
 
-  public manualMode = true;
-  public systemAutoMode: boolean;
+  public isDarkMode = true;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.initializeApp();
   }
 
-  ngOnInit() {
-    this.renderer.setAttribute(this.document.body, 'class', 'dark');
-    this.checkColorSchemeSystemWide();
-  }
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
+
+  ngOnInit() {
+    this.checkColorSchemeSystemWide();
+    this.isDarkMode = JSON.parse(sessionStorage.getItem('isDarkMode'));
+    this.document.body.classList.toggle('dark', this.isDarkMode);
+  }
+
   checkColorSchemeSystemWide(){
     const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
     colorScheme.addEventListener('change', mediaQuery => {
-      this.systemAutoMode = mediaQuery.matches;
-      this.document.body.classList.toggle('dark', this.systemAutoMode);
+      this.isDarkMode = mediaQuery.matches;
+      this.processDarkMode(this.isDarkMode);
     });
   }
+
   toggleTheme(){
-    this.manualMode = !this.manualMode;
-    this.document.body.classList.toggle('dark', this.manualMode);
+    this.isDarkMode = !this.isDarkMode;
+    this.processDarkMode(this.isDarkMode);
+  }
+
+  processDarkMode(mode: boolean){
+    sessionStorage.setItem('isDarkMode', JSON.stringify(mode));
+    this.document.body.classList.toggle('dark', mode);
   }
 }
