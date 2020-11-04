@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lost zone</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12">
+        <ion-card color="transparent">
+          <ion-card-header class="ion-text-center">
+            <ion-card-title>Looks like you are lost!</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="ion-text-center">
+            <ion-row>
+              <ion-col size="12">
+                <ion-icon color="secondary" name="boat-outline"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                Your options are to go back or go home.
+              </ion-col>
+              <ion-col size="12">
+                <ion-button
+                  [routerLink]="['/home']"
+                  expand="block"
+                  fill="clear"
+                  shape="round"
+                >
+                  Go home
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
