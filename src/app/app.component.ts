@@ -1,9 +1,12 @@
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Plugins } from '@capacitor/core';
 import { DOCUMENT } from '@angular/common';
+
+const {Storage} = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -12,7 +15,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent implements OnInit {
 
-  public isDarkMode = true;
+  public isDarkMode: boolean;
 
   constructor(
     private platform: Platform,
@@ -32,25 +35,34 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.checkColorSchemeSystemWide();
-    this.isDarkMode = JSON.parse(sessionStorage.getItem('isDarkMode'));
-    this.document.body.classList.toggle('dark', this.isDarkMode);
+    this.getDarkModeValue().then((value) => {
+      this.document.body.classList.toggle('dark', value);
+    });
   }
 
   checkColorSchemeSystemWide(){
     const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
     colorScheme.addEventListener('change', mediaQuery => {
       this.isDarkMode = mediaQuery.matches;
-      this.processDarkMode(this.isDarkMode);
+      this.setDarkModeValue(this.isDarkMode);
     });
   }
 
   toggleTheme(){
     this.isDarkMode = !this.isDarkMode;
-    this.processDarkMode(this.isDarkMode);
+    this.setDarkModeValue(this.isDarkMode);
   }
 
-  processDarkMode(mode: boolean){
-    sessionStorage.setItem('isDarkMode', JSON.stringify(mode));
+  async setDarkModeValue(mode: boolean){
+    await Storage.set({
+      key: 'isDarkMode',
+      value: JSON.stringify(mode)
+    });
     this.document.body.classList.toggle('dark', mode);
+  }
+
+  async getDarkModeValue(): Promise<boolean>{
+    const returnedValue = await Storage.get({key: 'isDarkMode'});
+    return JSON.parse(returnedValue.value);
   }
 }
