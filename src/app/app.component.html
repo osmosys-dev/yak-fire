@@ -1,15 +1,25 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" swipeGesture="false">
       <ion-content>
-        <ion-list id="inbox-list">
+        <ion-list>
           <ion-list-header>Yak</ion-list-header>
-          <ion-note>user1@yakapp.test</ion-note>
+          <ion-note class="ion-padding-start">user1@yakapp.test</ion-note>
 
           <ion-menu-toggle auto-hide="false">
-            <ion-item button lines="none">
+            <ion-item lines="none" class="ion-padding-top">
               <ion-icon slot="start" name="contrast-outline"></ion-icon>
-              <ion-label>Theme</ion-label>
+              <ion-label>{{ manualMode ? 'Dark' : 'Light' }}</ion-label>
+              <button
+                (click)="toggleTheme()"
+                class="toggle-btn ion-activatable"
+              >
+                <ion-ripple-effect type="bounded"></ion-ripple-effect>
+                <!-- </div> -->
+                <ion-icon
+                  [name]="manualMode ? 'sunny-outline' : 'moon-outline'"
+                ></ion-icon>
+              </button>
             </ion-item>
             <ion-item button lines="none">
               <ion-icon slot="start" name="log-out-outline"></ion-icon>
