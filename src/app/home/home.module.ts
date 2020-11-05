@@ -9,14 +9,16 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { LanguageCardComponent } from './components/language-card/language-card.component';
 import { CardsListComponent } from '../shared/components/card-list/cards-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    SharedModule
   ],
-  declarations: [HomePage, LanguageCardComponent, CardsListComponent]
+  declarations: [HomePage, LanguageCardComponent]
 })
 export class HomePageModule {}

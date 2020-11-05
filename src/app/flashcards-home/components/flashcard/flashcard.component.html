@@ -1,0 +1,38 @@
+<ion-card>
+  <ion-card-header>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="6">
+        <ion-card-subtitle>Sat 04.11.20</ion-card-subtitle>
+      </ion-col>
+
+      <ion-col size="6" class="ion-text-end">
+        <ion-checkbox color="success"></ion-checkbox>
+      </ion-col>
+    </ion-row>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-row>
+      <ion-col size="12" class="learned"> Czego Pan nie ma?</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="translated">What don't you have sir?</ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-end">
+      <ion-col size="3">
+        <ion-button
+          fill="clear"
+          shape="round"
+          [routerLink]="['/flashcards-home', ':flashcardId']"
+        >
+          View
+        </ion-button>
+      </ion-col>
+      <ion-col size="3" class="ion-text-end">
+        <ion-button fill="clear" shape="round" (click)="showEditModal()">
+          Edit
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>

@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { FlashcardsHomePageRoutingModule } from './flashcards-home-routing.module';
 
 import { FlashcardsHomePage } from './flashcards-home.page';
+import { CardsListComponent } from '../shared/components/card-list/cards-list.component';
+import { FlashcardComponent } from './components/flashcard/flashcard.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FlashcardsHomePageRoutingModule
+    FlashcardsHomePageRoutingModule,
+    SharedModule
   ],
-  declarations: [FlashcardsHomePage]
+  declarations: [FlashcardsHomePage, FlashcardComponent]
 })
 export class FlashcardsHomePageModule {}
