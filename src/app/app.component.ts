@@ -1,14 +1,13 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Plugins } from '@capacitor/core';
 import { DOCUMENT } from '@angular/common';
 import {  Observable, of } from 'rxjs';
 import {  map } from 'rxjs/operators';
+import { LocalStorageService } from './services/localStorage.service';
 
-const {Storage} = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -17,23 +16,24 @@ const {Storage} = Plugins;
 })
 export class AppComponent implements OnInit {
 
-
-  private isDarkMode: boolean;
-  public isDark$: Observable<boolean>;
+  private isDark: boolean;
+  public theme$: Observable<boolean>;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private localStorageService: LocalStorageService
   ) {
-   this.getDarkModeValue().then( value => {
-    this.isDarkMode = value;
-    this.isDark$ = of(this.isDarkMode);
-    this.isDark$.subscribe();
+    this.localStorageService.getThemeValue()
+    .then( value => {
+      this.isDark = value;
+      this.theme$ = of(this.isDark);
+      this.theme$.subscribe();
    }
    );
-   this.initializeApp();
+    this.initializeApp();
   }
 
   initializeApp() {
@@ -44,41 +44,31 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkColorSchemeSystemWide();
-    this.getDarkModeValue().then((value) => {
+    this.applyColorSchemeSystemWide();
+    this.localStorageService.getThemeValue().then((value) => {
       this.document.body.classList.toggle('dark', value);
     });
   }
 
-  checkColorSchemeSystemWide(){
+  applyColorSchemeSystemWide(){
     const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
     colorScheme.addEventListener('change', mediaQuery => {
-      this.isDark$ = of(mediaQuery.matches);
-      this.isDark$.pipe(
-        map(value => this.setDarkModeValue(value)),
+      this.theme$ = of(mediaQuery.matches);
+      this.theme$.pipe(
+        map(value => this.localStorageService.setThemeValue(value).then(() => {
+          this.document.body.classList.toggle('dark', value);
+        })),
       ).subscribe();
     });
   }
+
   toggleTheme(){
-    this.isDarkMode = !this.isDarkMode;
-    this.isDark$ = of(this.isDarkMode);
-    this.isDark$.pipe(
-      map(value => this.setDarkModeValue(value)),
+    this.isDark = !this.isDark;
+    this.theme$ = of(this.isDark);
+    this.theme$.pipe(
+      map(value => this.localStorageService.setThemeValue(value).then(() => {
+        this.document.body.classList.toggle('dark', value);
+      })),
     ).subscribe();
-
-
-  }
-
-  async setDarkModeValue(mode: boolean){
-    await Storage.set({
-      key: 'isDarkMode',
-      value: JSON.stringify(mode)
-    });
-    this.document.body.classList.toggle('dark', mode);
-  }
-
-  async getDarkModeValue(): Promise<boolean>{
-    const returnedValue = await Storage.get({key: 'isDarkMode'});
-    return JSON.parse(returnedValue.value);
   }
 }
