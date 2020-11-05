@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -16,8 +16,8 @@ import { LocalStorageService } from './services/localStorage.service';
 })
 export class AppComponent implements OnInit {
 
-  private isDark: boolean;
   public theme$: Observable<boolean>;
+  private isDark: boolean;
 
   constructor(
     private platform: Platform,
