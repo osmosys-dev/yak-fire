@@ -3,10 +3,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Plugins } from '@capacitor/core';
 import { DOCUMENT } from '@angular/common';
+import {  Observable, of } from 'rxjs';
+import {  map } from 'rxjs/operators';
+import { LocalStorageService } from './services/localStorage.service';
 
-const {Storage} = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -15,17 +16,23 @@ const {Storage} = Plugins;
 })
 export class AppComponent implements OnInit {
 
-  public isDarkMode: boolean;
+  public theme$: Observable<boolean>;
+  private isDark: boolean;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     @Inject(DOCUMENT) private document: Document,
+    private localStorageService: LocalStorageService
   ) {
-    this.getDarkModeValue().then((value) => {
-      this.isDarkMode = value;
-    });
+    this.localStorageService.getThemeValue()
+    .then( value => {
+      this.isDark = value;
+      this.theme$ = of(this.isDark);
+      this.theme$.subscribe();
+   }
+   );
     this.initializeApp();
   }
 
@@ -37,35 +44,31 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkColorSchemeSystemWide();
-    this.getDarkModeValue().then((value) => {
+    this.applyColorSchemeSystemWide();
+    this.localStorageService.getThemeValue().then((value) => {
       this.document.body.classList.toggle('dark', value);
     });
   }
 
-  checkColorSchemeSystemWide(){
+  applyColorSchemeSystemWide(){
     const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
     colorScheme.addEventListener('change', mediaQuery => {
-      this.isDarkMode = mediaQuery.matches;
-      this.setDarkModeValue(this.isDarkMode);
+      this.theme$ = of(mediaQuery.matches);
+      this.theme$.pipe(
+        map(value => this.localStorageService.setThemeValue(value).then(() => {
+          this.document.body.classList.toggle('dark', value);
+        })),
+      ).subscribe();
     });
   }
 
   toggleTheme(){
-    this.isDarkMode = !this.isDarkMode;
-    this.setDarkModeValue(this.isDarkMode);
-  }
-
-  async setDarkModeValue(mode: boolean){
-    await Storage.set({
-      key: 'isDarkMode',
-      value: JSON.stringify(mode)
-    });
-    this.document.body.classList.toggle('dark', mode);
-  }
-
-  async getDarkModeValue(): Promise<boolean>{
-    const returnedValue = await Storage.get({key: 'isDarkMode'});
-    return JSON.parse(returnedValue.value);
+    this.isDark = !this.isDark;
+    this.theme$ = of(this.isDark);
+    this.theme$.pipe(
+      map(value => this.localStorageService.setThemeValue(value).then(() => {
+        this.document.body.classList.toggle('dark', value);
+      })),
+    ).subscribe();
   }
 }

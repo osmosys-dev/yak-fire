@@ -9,14 +9,14 @@
           <ion-menu-toggle auto-hide="false">
             <ion-item lines="none" class="ion-padding-top">
               <ion-icon slot="start" name="contrast-outline"></ion-icon>
-              <ion-label>{{ isDarkMode ? 'Light' : 'Dark' }}</ion-label>
+              <ion-label>{{ (theme$ | async) ? 'Light' : 'Dark' }}</ion-label>
               <button
                 (click)="toggleTheme()"
                 class="toggle-btn ion-activatable"
               >
                 <ion-ripple-effect type="bounded"></ion-ripple-effect>
                 <ion-icon
-                  [name]="isDarkMode ? 'sunny-outline' : 'moon-outline'"
+                  [name]="(theme$ | async) ? 'sunny-outline' : 'moon-outline'"
                 ></ion-icon>
               </button>
             </ion-item>
