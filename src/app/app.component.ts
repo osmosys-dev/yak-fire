@@ -23,6 +23,9 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     @Inject(DOCUMENT) private document: Document,
   ) {
+    this.getDarkModeValue().then((value) => {
+      this.isDarkMode = value;
+    });
     this.initializeApp();
   }
 
