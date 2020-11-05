@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "yak-app-53989": {
+      "hosting": {
+        "app": [
+          "yak-app-53989"
+        ]
+      }
+    }
+  }
+}
