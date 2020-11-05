@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage
+  },
+  {
+    path: ':languageUrl',
+    loadChildren: () => import('../flashcards-home/flashcards-home.module').then(m => m.FlashcardsHomePageModule)
   }
 ];
 
