@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { EditFlashcardComponent } from '../edit-flashcard/edit-flashcard.component';
 
 @Component({
   selector: 'flash-card',
@@ -7,13 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashcardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {}
 
-  showEditModal(){
-
-    console.log('Flashcard component: [showEditModal()]');
-
+  async showEditModal(){
+    const modal = await this.modalController.create({
+      component: EditFlashcardComponent
+    });
+    await modal.present();
   }
 }

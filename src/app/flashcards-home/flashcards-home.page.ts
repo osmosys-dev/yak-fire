@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { CreateFlashcardComponent } from './components/create-flashcard/create-flashcard.component';
 
 @Component({
   selector: 'app-flashcards-home',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashcardsHomePage implements OnInit {
 
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {
+  }
+
+  async showCreateModal(){
+    const modal = await this.modalController.create({
+      component: CreateFlashcardComponent
+    });
+    await modal.present();
   }
 
 }

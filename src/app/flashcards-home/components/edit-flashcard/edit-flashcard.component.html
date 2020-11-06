@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Edit flashcard </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12">
+      <ion-list>
+        <ion-item>
+          <ion-label color="secondary" position="floating">
+            {{ textLabel }}</ion-label
+          >
+          <ion-input value="Czego Pan nie ma?"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="secondary" position="floating"
+            >Translated</ion-label
+          >
+          <ion-input value="What dont you have sir?"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Category</ion-label>
+          <ion-select
+            interface="popover"
+            [(ngModel)]="category"
+            (ngModelChange)="onChange(category)"
+          >
+            <ion-select-option value="conversation"
+              >Conversation</ion-select-option
+            >
+            <ion-select-option value="vocabulary">Vocabulary</ion-select-option>
+            <ion-select-option value="verb">Verb</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Confident</ion-label>
+          <ion-checkbox slot="end" color="success"></ion-checkbox>
+        </ion-item>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="4" class="ion-text-center">
+            <ion-button
+              fill="clear"
+              shape="round"
+              color="danger"
+              (click)="presentAlert()"
+            >
+              <ion-icon slot="end" name="trash-outline"></ion-icon>
+              Delete
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="4" class="ion-text-center">
+        <ion-button fill="clear" shape="round" (click)="closeModal()">
+          <ion-icon slot="start" name="close-outline"></ion-icon>
+          Close
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

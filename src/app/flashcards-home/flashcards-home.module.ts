@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { FlashcardsHomePageRoutingModule } from './flashcards-home-routing.module';
 
 import { FlashcardsHomePage } from './flashcards-home.page';
-import { CardsListComponent } from '../shared/components/card-list/cards-list.component';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
-import { SharedModule } from '../shared/shared.module';
+import { CreateFlashcardComponent } from './components/create-flashcard/create-flashcard.component';
+import { EditFlashcardComponent } from './components/edit-flashcard/edit-flashcard.component';
 
 @NgModule({
   imports: [
@@ -19,6 +21,6 @@ import { SharedModule } from '../shared/shared.module';
     FlashcardsHomePageRoutingModule,
     SharedModule
   ],
-  declarations: [FlashcardsHomePage, FlashcardComponent]
+  declarations: [FlashcardsHomePage, FlashcardComponent, CreateFlashcardComponent, EditFlashcardComponent]
 })
 export class FlashcardsHomePageModule {}
