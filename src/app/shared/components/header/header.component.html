@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ng-content select="ion-back-button"></ng-content>
+    </ion-buttons>
+    <ion-title>{{ headerTitle }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button><ion-icon [name]="menuIcon"></ion-icon></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

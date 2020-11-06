@@ -26,7 +26,7 @@ export class CreateFlashcardComponent implements OnInit {
     this.switchTextLabel(selectedValue);
   }
 
-  switchTextLabel(key){
+  switchTextLabel(key: string){
     switch (key) {
       case 'conversation':
         this.textLabel = 'Sentence';

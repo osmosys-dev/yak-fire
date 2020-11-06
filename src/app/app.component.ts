@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { DOCUMENT } from '@angular/common';
@@ -24,7 +24,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     @Inject(DOCUMENT) private document: Document,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private alertController: AlertController
   ) {
     this.localStorageService.getThemeValue()
     .then( value => {
@@ -70,5 +71,17 @@ export class AppComponent implements OnInit {
         this.document.body.classList.toggle('dark', value);
       })),
     ).subscribe();
+  }
+
+  processLogout(){
+    this.presentAlert();
+  }
+
+  async presentAlert(){
+    const alert = await this.alertController.create({
+      message: 'Proceed to log out?',
+      buttons: ['Yes', 'No']
+    });
+    await alert.present();
   }
 }

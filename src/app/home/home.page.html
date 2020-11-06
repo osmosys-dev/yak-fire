@@ -1,16 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Home</ion-title>
-    <ion-buttons slot="end">
-      <ion-menu-button
-        ><ion-icon name="ellipsis-vertical-outline"></ion-icon
-      ></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header headerTitle="Home"></app-header>
 
 <ion-content>
   <cards-list
@@ -21,4 +9,10 @@
   >
     <language-card></language-card>
   </cards-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="showCreateModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

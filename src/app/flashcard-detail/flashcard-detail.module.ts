@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { FlashcardDetailPageRoutingModule } from './flashcard-detail-routing.module';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { FlashcardDetailPage } from './flashcard-detail.page';
 
 @NgModule({
@@ -13,7 +15,8 @@ import { FlashcardDetailPage } from './flashcard-detail.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FlashcardDetailPageRoutingModule
+    FlashcardDetailPageRoutingModule,
+    SharedModule
   ],
   declarations: [FlashcardDetailPage]
 })
