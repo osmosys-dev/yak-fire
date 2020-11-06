@@ -9,6 +9,9 @@ import { FlashcardDetailPageRoutingModule } from './flashcard-detail-routing.mod
 import { SharedModule } from '../shared/shared.module';
 
 import { FlashcardDetailPage } from './flashcard-detail.page';
+import { ConversationViewComponent } from './components/conversation-view/conversation-view.component';
+import { VerbViewComponent } from './components/verb-view/verb-view.component';
+import { VocabularyViewComponent } from './components/vocabulary-view/vocabulary-view.component';
 
 @NgModule({
   imports: [
@@ -18,6 +21,6 @@ import { FlashcardDetailPage } from './flashcard-detail.page';
     FlashcardDetailPageRoutingModule,
     SharedModule
   ],
-  declarations: [FlashcardDetailPage]
+  declarations: [FlashcardDetailPage, ConversationViewComponent, VerbViewComponent, VocabularyViewComponent]
 })
 export class FlashcardDetailPageModule {}

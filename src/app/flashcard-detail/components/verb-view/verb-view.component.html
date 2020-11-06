@@ -1,0 +1,111 @@
+<ng-container>
+  <ion-item-divider>
+    <ion-label>Verb</ion-label>
+  </ion-item-divider>
+  <ion-item>
+    <ion-text class="ion-padding ion-text-justify">Jeść</ion-text>
+  </ion-item>
+  <ion-item-divider class="ion-margin-top">
+    <ion-label>Translated</ion-label>
+  </ion-item-divider>
+  <ion-item
+    ><ion-text class="ion-padding ion-text-justify">To eat</ion-text>
+  </ion-item>
+  <ion-item-divider class="ion-margin-top">
+    <ion-label>Notes</ion-label>
+  </ion-item-divider>
+  <ion-item>
+    <ion-text class="ion-padding ion-text-justify"
+      >a set of forms taken by a verb to indicate the time (and sometimes also
+      the continuance or completeness) of the action in relation to the time of
+      the utterance.</ion-text
+    >
+  </ion-item>
+  <ion-item-divider class="ion-margin-top">
+    <ion-label>Use in {{ timeIndication() }} sentence</ion-label>
+  </ion-item-divider>
+  <ion-item class="ion-margin-bottom">
+    <ion-text class="ion-padding ion-text-justify">{{
+      tenseSentence()
+    }}</ion-text>
+  </ion-item>
+
+  <ion-segment value="present" [(ngModel)]="tense">
+    <ion-segment-button value="present">
+      <ion-label>Present</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="past">
+      <ion-label>Past</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="future">
+      <ion-label>Future</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container [ngSwitch]="tense">
+    <ion-list *ngSwitchCase="'present'">
+      <ion-grid *ngIf="present.length > 0; else noTense">
+        <ion-row class="ion-justify-content-start">
+          <ion-col>
+            <ion-row *ngFor="let tense of present">
+              <ion-col>
+                <ion-item class="ion-text-center">
+                  <ion-label>{{ tense }}</ion-label>
+                </ion-item></ion-col
+              >
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'past'">
+      <ion-grid *ngIf="past.length > 0; else noTense">
+        <ion-row class="ion-justify-content-start">
+          <ion-col>
+            <ion-row *ngFor="let tense of past">
+              <ion-col>
+                <ion-item class="ion-text-center">
+                  <ion-label>{{ tense }}</ion-label>
+                </ion-item></ion-col
+              >
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'future'">
+      <ion-grid *ngIf="future.length > 0; else noTense">
+        <ion-row class="ion-justify-content-start">
+          <ion-col>
+            <ion-row *ngFor="let tense of future">
+              <ion-col>
+                <ion-item class="ion-text-center">
+                  <ion-label>{{ tense }}</ion-label>
+                </ion-item></ion-col
+              >
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </ng-container>
+</ng-container>
+
+<ng-template #noTense>
+  <ion-grid class="no-tense">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-text> No {{ timeIndication() }} tense added </ion-text>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <ion-icon
+          color="warning"
+          [ngStyle]="{ fontSize: '40px' }"
+          name="language-outline"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>

@@ -2,4 +2,16 @@
   <ion-back-button defaultHref></ion-back-button>
 </app-header>
 
-<ion-content> </ion-content>
+<ng-container [ngSwitch]="type">
+  <ion-content *ngSwitchCase="'CONVERSATION'">
+    <conversation-view></conversation-view>
+  </ion-content>
+
+  <ion-content *ngSwitchCase="'VERB'" class="ion-padding-bottom">
+    <verb-view></verb-view>
+  </ion-content>
+
+  <ion-content *ngSwitchCase="'VOCABULARY'">
+    <vocabulary-view></vocabulary-view>
+  </ion-content>
+</ng-container>

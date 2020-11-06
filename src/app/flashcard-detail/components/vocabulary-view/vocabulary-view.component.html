@@ -1,0 +1,72 @@
+<ng-container>
+  <ion-list>
+    <ion-item-divider>
+      <ion-label>Word</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-text class="ion-padding ion-text-justify"> Okulary </ion-text>
+    </ion-item>
+    <ion-item-divider class="ion-margin-top">
+      <ion-label>Translated</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-text class="ion-padding ion-text-justify">Glasses</ion-text>
+    </ion-item>
+    <ion-item-divider class="ion-margin-top">
+      <ion-label>Plural</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-text class="ion-padding ion-text-justify">Glasses</ion-text>
+    </ion-item>
+    <ion-item-divider class="ion-margin-top">
+      <ion-label>Use in a sentence</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-text class="ion-padding ion-text-justify"
+        >Oglądasz gdzie są moje okulary ?</ion-text
+      >
+    </ion-item>
+    <ion-item-divider class="ion-margin-top">
+      <ion-label>Notes</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-text class="ion-padding ion-text-justify"
+        >a set of forms taken by a verb to indicate the time (and sometimes also
+        the continuance or completeness) of the action in relation to the time
+        of the utterance.</ion-text
+      >
+    </ion-item>
+    <ion-item-divider class="ion-margin-top">
+      <ion-label>Synonyms</ion-label>
+    </ion-item-divider>
+    <ion-grid *ngIf="synonyms.length > 0; else noSynonyms">
+      <ion-row class="ion-justify-content-start">
+        <ion-col>
+          <ion-row *ngFor="let word of synonyms">
+            <ion-col>
+              <ion-item class="ion-text-center">
+                <ion-label>{{ word }}</ion-label>
+              </ion-item></ion-col
+            >
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ng-container>
+
+<ng-template #noSynonyms>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-item class="ion-text-center">
+              <ion-label color="warning">No synonyms added</ion-label>
+            </ion-item></ion-col
+          >
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>

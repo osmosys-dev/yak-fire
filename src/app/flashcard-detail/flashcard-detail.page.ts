@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashcardDetailPage implements OnInit {
 
+  type = 'VOCABULARY';
+
   constructor() { }
 
   ngOnInit() {
   }
+
+
 
 }
