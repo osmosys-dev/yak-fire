@@ -9,12 +9,14 @@ import { AlertController, ModalController } from '@ionic/angular';
 export class EditFlashcardComponent implements OnInit {
 
   textLabel: string;
-  category = 'conversation';
+  type = 'CONVERSATION';
+
+  tense = 'present';
 
   constructor(private modalController: ModalController, private alertController: AlertController) { }
 
   ngOnInit() {
-    this.switchTextLabel(this.category);
+    this.switchTextLabel(this.type);
   }
 
   closeModal(){
@@ -31,22 +33,32 @@ export class EditFlashcardComponent implements OnInit {
   }
 
   onChange(selectedValue: string){
-    this.category = selectedValue;
+    this.type = selectedValue;
     this.switchTextLabel(selectedValue);
   }
 
   switchTextLabel(key: string){
     switch (key) {
-      case 'conversation':
-        this.textLabel = 'Sentence';
-        break;
-      case 'vocabulary':
-        this.textLabel = 'Word';
-        break;
-      case 'verb':
+      case 'VERB':
         this.textLabel = 'Verb';
         break;
+      case 'VOCABULARY':
+        this.textLabel = 'Word';
+        break;
+      default:
+        this.textLabel = 'Sentence';
     }
   }
+
+  // timeIndication(){
+  //   switch (this.tense) {
+  //     case 'past':
+  //       return 'past';
+  //     case 'future':
+  //       return 'future';
+  //     default:
+  //       return 'present';
+  //   }
+  // }
 
 }
