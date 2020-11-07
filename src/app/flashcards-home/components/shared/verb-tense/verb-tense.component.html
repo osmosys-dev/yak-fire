@@ -1,0 +1,25 @@
+<ng-container>
+  <input-hint-text
+    type="textarea"
+    placeholder="Enter tense"
+    hintTextColor="tertiary"
+    hintText="Separate each tense with a comma ','"
+    [textareaValue]="tenseValue"
+  >
+    <ion-label color="secondary" position="floating"
+      >{{ tense | titlecase }} tense</ion-label
+    >
+  </input-hint-text>
+
+  <ion-item>
+    <ion-label color="secondary" position="floating"
+      >Use in {{ tense }} sentence</ion-label
+    >
+    <ion-textarea
+      rows="2"
+      class="ion-padding-bottom ion-padding-top"
+      placeholder="Contruct a sentence with the one of the above tense"
+      [value]="sentenceValue"
+    ></ion-textarea>
+  </ion-item>
+</ng-container>

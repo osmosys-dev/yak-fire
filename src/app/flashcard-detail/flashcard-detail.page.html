@@ -4,14 +4,14 @@
 
 <ng-container [ngSwitch]="type">
   <ion-content *ngSwitchCase="'CONVERSATION'">
-    <conversation-view></conversation-view>
+    <conversation-detail-view></conversation-detail-view>
   </ion-content>
 
   <ion-content *ngSwitchCase="'VERB'" class="ion-padding-bottom">
-    <verb-view></verb-view>
+    <verb-detail-view></verb-detail-view>
   </ion-content>
 
   <ion-content *ngSwitchCase="'VOCABULARY'">
-    <vocabulary-view></vocabulary-view>
+    <vocabulary-detail-view></vocabulary-detail-view>
   </ion-content>
 </ng-container>

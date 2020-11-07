@@ -7,19 +7,6 @@
 <ion-content>
   <ion-row>
     <ion-col size="12">
-      <!-- <ion-list> -->
-      <!-- <ion-item>
-          <ion-label color="secondary" position="floating">
-            {{ textLabel }}</ion-label
-          >
-          <ion-input value="Czego Pan nie ma?"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating"
-            >Translated</ion-label
-          >
-          <ion-input value="What dont you have sir?"></ion-input>
-        </ion-item> -->
       <ion-item>
         <ion-label>Type</ion-label>
         <ion-select
@@ -34,238 +21,38 @@
           <ion-select-option value="VOCABULARY">Vocabulary</ion-select-option>
         </ion-select>
       </ion-item>
-      <!-- <ion-item>
-          <ion-label>Confident</ion-label>
-          <ion-checkbox slot="end" color="success"></ion-checkbox>
-        </ion-item> -->
-
-      <!-- <ion-row class="ion-justify-content-center">
-        <ion-col size="4" class="ion-text-center">
-          <ion-button
-            fill="clear"
-            shape="round"
-            color="danger"
-            (click)="presentAlert()"
-          >
-            <ion-icon slot="end" name="trash-outline"></ion-icon>
-            Delete
-          </ion-button>
-        </ion-col>
-      </ion-row> -->
-      <!-- </ion-list> -->
     </ion-col>
   </ion-row>
 
   <ng-container [ngSwitch]="type">
     <ion-content *ngSwitchCase="'CONVERSATION'">
-      <!-- <ion-grid fixed> -->
-      <ion-list>
-        <ion-item>
-          <ion-label color="secondary" position="floating"> Sentence</ion-label>
-          <ion-input value="Czego Pan nie ma?"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating"
-            >Translated</ion-label
-          >
-          <ion-input value="What dont you have sir?"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary">Confident</ion-label>
-          <ion-checkbox slot="end" color="success"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating">Notes</ion-label>
-          <ion-textarea
-            rows="2"
-            value="Additional notes"
-            class="ion-padding-bottom ion-padding-top"
-          ></ion-textarea>
-        </ion-item>
-      </ion-list>
-      <!-- </ion-grid> -->
+      <edit-conversation></edit-conversation>
     </ion-content>
 
     <ion-content *ngSwitchCase="'VERB'">
-      <!-- <ion-grid fixed> -->
-      <ion-list>
-        <ion-item>
-          <ion-label color="secondary" position="floating">Verb</ion-label>
-          <ion-input value="Jeść"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating"
-            >Translated</ion-label
-          >
-          <ion-input value="To eat"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label color="secondary">Confident</ion-label>
-          <ion-checkbox slot="end" color="success"></ion-checkbox>
-        </ion-item>
-
-        <ion-item>
-          <ion-label color="secondary" position="floating">Notes</ion-label>
-          <ion-textarea
-            rows="2"
-            value="Additional notes"
-            class="ion-padding-bottom ion-padding-top"
-          ></ion-textarea>
-        </ion-item>
-
-        <ion-segment value="present" [(ngModel)]="tense">
-          <ion-segment-button value="present">
-            <ion-label>Present</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="past">
-            <ion-label>Past</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="future">
-            <ion-label>Future</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-
-        <ng-container [ngSwitch]="tense">
-          <ion-list *ngSwitchCase="'present'">
-            <ion-item>
-              <ion-label color="secondary" position="floating"
-                >Present tense</ion-label
-              >
-              <ion-textarea
-                rows="4"
-                value="Ja jem, Ty jesz, On/Ona/Ono je, My jemy, Wy jecie, Oni/One jedzą"
-                class="ion-padding-bottom ion-padding-top"
-              ></ion-textarea>
-            </ion-item>
-
-            <ion-item>
-              <ion-label color="secondary" position="floating"
-                >Use in present sentence</ion-label
-              >
-              <ion-textarea
-                rows="2"
-                value="Jemy teraz śliwki."
-                class="ion-padding-bottom ion-padding-top"
-              ></ion-textarea>
-            </ion-item>
-          </ion-list>
-
-          <ion-list *ngSwitchCase="'past'">
-            <ion-item>
-              <ion-label color="secondary" position="floating"
-                >Past tense</ion-label
-              >
-              <ion-textarea
-                rows="4"
-                value="Ja jadłem / jadłam, Ty jadłeś / jadłaś, On jadł', 'Ona jadła, My jedliśmy / jadłyśmy, Wy jedliście / jadłyście, Oni jedli, One jadły"
-                class="ion-padding-bottom ion-padding-top"
-              ></ion-textarea>
-            </ion-item>
-
-            <ion-item>
-              <ion-label color="secondary" position="floating"
-                >Use in past sentence</ion-label
-              >
-              <ion-textarea
-                rows="2"
-                value="Wczoraj jadłem słodkie ziemniaki."
-                class="ion-padding-bottom ion-padding-top"
-              ></ion-textarea>
-            </ion-item>
-          </ion-list>
-
-          <ion-list *ngSwitchCase="'future'">
-            <ion-item>
-              <ion-label color="secondary" position="floating"
-                >Future tense</ion-label
-              >
-              <ion-textarea
-                rows="4"
-                value="Ja będę jadł / jadła, Ty będziesz jadł / jadła, On będzie jadł, Ona będzie jadła, My będziemy jedli / jadły, Wy będziecie jedli / jadły, Oni będą jedli, One będą jadły"
-                class="ion-padding-bottom ion-padding-top"
-              ></ion-textarea>
-            </ion-item>
-
-            <ion-item>
-              <ion-label color="secondary" position="floating"
-                >Use in future sentence</ion-label
-              >
-              <ion-textarea
-                rows="2"
-                value="Ty bedziesz jadła to danie jutro ?"
-                class="ion-padding-bottom ion-padding-top"
-              ></ion-textarea>
-            </ion-item>
-          </ion-list>
-        </ng-container>
-        <!-- <ion-item>
-            <ion-label color="secondary" position="floating"
-              >Synonyms</ion-label
-            >
-            <ion-input value="Kadr, Ramka"></ion-input>
-          </ion-item> -->
-      </ion-list>
-      <!-- </ion-grid> -->
+      <edit-verb></edit-verb>
     </ion-content>
 
     <ion-content *ngSwitchCase="'VOCABULARY'">
-      <!-- <ion-grid fixed> -->
-      <ion-list>
-        <ion-item>
-          <ion-label color="secondary" position="floating"> Word</ion-label>
-          <ion-input value="Okular"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating"
-            >Translated</ion-label
-          >
-          <ion-input value="Spectacle"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating">Plural</ion-label>
-          <ion-input value="Okulary"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating"
-            >Use in a sentence</ion-label
-          >
-          <ion-textarea
-            value="Oglądasz gdzie są moje okulary?"
-            class="ion-padding-bottom ion-padding-top"
-          ></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating">Synonyms</ion-label>
-          <ion-input value="Kadr, Ramka"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary">Confident</ion-label>
-          <ion-checkbox slot="end" color="success"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label color="secondary" position="floating">Notes</ion-label>
-          <ion-textarea
-            rows="2"
-            value="Additional notes"
-            class="ion-padding-bottom ion-padding-top"
-          ></ion-textarea>
-        </ion-item>
-      </ion-list>
-      <!-- </ion-grid> -->
+      <edit-vocabulary></edit-vocabulary>
     </ion-content>
   </ng-container>
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="4" class="ion-text-center">
-        <ion-button fill="clear" shape="round" (click)="closeModal()">
-          <ion-icon slot="start" name="close-outline"></ion-icon>
-          Close
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer>
+<editing-footer>
+  <ion-button fill="clear" shape="round" (click)="closeModal()" class="start">
+    <ion-icon slot="start" name="close-outline"></ion-icon>
+    Close
+  </ion-button>
+
+  <ion-button
+    fill="clear"
+    shape="round"
+    color="danger"
+    class="end"
+    (click)="deleteFlashcard()"
+  >
+    <ion-icon slot="start" name="trash-outline"></ion-icon>
+    Delete
+  </ion-button>
+</editing-footer>

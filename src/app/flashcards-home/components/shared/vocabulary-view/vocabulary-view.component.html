@@ -1,0 +1,55 @@
+<ion-list>
+  <ion-item>
+    <ion-label color="secondary" position="floating"> Word</ion-label>
+    <ion-input
+      placeholder="Enter a word you learned"
+      [value]="wordValue"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="secondary" position="floating">Translated</ion-label>
+    <ion-input
+      placeholder="Word learned in your language"
+      [value]="translatedValue"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="secondary" position="floating">Plural</ion-label>
+    <ion-input placeholder="Self explanatory" [value]="pluralValue"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="secondary" position="floating"
+      >Use in a sentence</ion-label
+    >
+    <ion-textarea
+      class="ion-padding-bottom ion-padding-top"
+      placeholder="Contruct a sentence with the learned word"
+      [value]="sentenceValue"
+    ></ion-textarea>
+  </ion-item>
+  <input-hint-text
+    placeholder="Enter synonym"
+    hintTextColor="tertiary"
+    hintText="Separate multiple synonyms with a comma ','"
+    [inputValue]="synonymsValue"
+  >
+    <ion-label color="secondary" position="floating">Synonyms</ion-label>
+  </input-hint-text>
+  <ion-item>
+    <ion-label color="secondary">Confident</ion-label>
+    <ion-checkbox
+      slot="end"
+      color="success"
+      [checked]="confidenceValue"
+    ></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label color="secondary" position="floating">Notes</ion-label>
+    <ion-textarea
+      rows="2"
+      class="ion-padding-bottom ion-padding-top"
+      placeholder="Add any additional info"
+      [value]="notesValue"
+    ></ion-textarea>
+  </ion-item>
+</ion-list>

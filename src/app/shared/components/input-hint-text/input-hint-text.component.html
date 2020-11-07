@@ -1,0 +1,27 @@
+<ng-container>
+  <ion-item>
+    <ng-content select="ion-label"></ng-content>
+
+    <ion-input
+      *ngIf="isInput; else textarea"
+      [placeholder]="placeholder"
+      (ionFocus)="triggerHintText(true)"
+      (ionBlur)="triggerHintText(false)"
+      [value]="inputValue"
+    ></ion-input>
+
+    <ng-template #textarea>
+      <ion-textarea
+        rows="4"
+        class="ion-padding-bottom ion-padding-top"
+        [placeholder]="placeholder"
+        (ionFocus)="triggerHintText(true)"
+        (ionBlur)="triggerHintText(false)"
+        [value]="textareaValue"
+      ></ion-textarea>
+    </ng-template>
+  </ion-item>
+  <ion-text [color]="hintTextColor" class="ion-padding" *ngIf="isHintText">{{
+    hintText
+  }}</ion-text>
+</ng-container>

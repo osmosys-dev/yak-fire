@@ -1,0 +1,77 @@
+<ion-list>
+  <ion-item>
+    <ion-label color="secondary" position="floating">Verb</ion-label>
+    <ion-input
+      [value]="verbValue"
+      placeholder="Enter a verb you learned"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="secondary" position="floating">Translated</ion-label>
+    <ion-input
+      [value]="translatedValue"
+      placeholder="Verb learned in your language"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="secondary">Confident</ion-label>
+    <ion-checkbox
+      slot="end"
+      color="success"
+      [checked]="confidenceValue"
+    ></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label
+      color="secondary"
+      position="floating"
+      placeholder="Add any additional info"
+      >Notes</ion-label
+    >
+    <ion-textarea
+      rows="2"
+      class="ion-padding-bottom ion-padding-top"
+      [value]="notesValue"
+    ></ion-textarea>
+  </ion-item>
+
+  <ion-segment value="present" [(ngModel)]="tense">
+    <ion-segment-button value="present">
+      <ion-label>Present</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="past">
+      <ion-label>Past</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="future">
+      <ion-label>Future</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container [ngSwitch]="tense">
+    <ion-list *ngSwitchCase="'present'">
+      <verb-tense
+        [tense]="tense"
+        [tenseValue]="presentTenseValue"
+        [sentenceValue]="presentSentenceValue"
+      ></verb-tense>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'past'">
+      <verb-tense
+        [tense]="tense"
+        [tenseValue]="pastTenseValue"
+        [sentenceValue]="pastSentenceValue"
+      ></verb-tense>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'future'">
+      <verb-tense
+        [tense]="tense"
+        [tenseValue]="futureTenseValue"
+        [sentenceValue]="futureSentenceValue"
+      ></verb-tense>
+    </ion-list>
+  </ng-container>
+</ion-list>

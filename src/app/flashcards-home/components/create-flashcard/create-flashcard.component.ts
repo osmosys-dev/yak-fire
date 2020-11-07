@@ -8,13 +8,12 @@ import { ModalController } from '@ionic/angular';
 })
 export class CreateFlashcardComponent implements OnInit {
 
-  textLabel: string;
-  category = 'conversation';
+  type = 'CONVERSATION';
+
 
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {
-    this.switchTextLabel(this.category);
   }
 
   closeModal(){
@@ -22,22 +21,11 @@ export class CreateFlashcardComponent implements OnInit {
   }
 
   onChange(selectedValue: string){
-    this.category = selectedValue;
-    this.switchTextLabel(selectedValue);
+    this.type = selectedValue;
   }
 
-  switchTextLabel(key: string){
-    switch (key) {
-      case 'conversation':
-        this.textLabel = 'Sentence';
-        break;
-      case 'vocabulary':
-        this.textLabel = 'Word';
-        break;
-      case 'verb':
-        this.textLabel = 'Verb';
-        break;
-    }
+  saveFlashcard(){
+    console.log('[Create Flashcard] Save flashcard');
   }
 
 }

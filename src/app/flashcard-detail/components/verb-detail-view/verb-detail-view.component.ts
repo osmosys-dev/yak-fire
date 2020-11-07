@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'verb-view',
-  templateUrl: './verb-view.component.html',
-  styleUrls: ['./verb-view.component.scss'],
+  selector: 'verb-detail-view',
+  templateUrl: './verb-detail-view.component.html',
+  styleUrls: ['./verb-detail-view.component.scss'],
 })
-export class VerbViewComponent implements OnInit {
+export class VerbDetailViewComponent implements OnInit {
   tense = 'present';
   present = [
     'Ja jem',
