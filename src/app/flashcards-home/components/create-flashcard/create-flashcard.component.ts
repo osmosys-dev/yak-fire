@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import {  Component, OnInit } from '@angular/core';
+import { AnimationController } from '@ionic/angular';
+import { ControllersService } from 'src/app/services/controllers.service';
+
+
 
 @Component({
   selector: 'app-create-flashcard',
@@ -10,22 +13,34 @@ export class CreateFlashcardComponent implements OnInit {
 
   type = 'CONVERSATION';
 
-
-  constructor(private modalController: ModalController) { }
+  constructor(private controller: ControllersService) { }
 
   ngOnInit() {
   }
 
   closeModal(){
-    this.modalController.dismiss();
+    this.controller.modal.dismiss();
   }
 
   onChange(selectedValue: string){
     this.type = selectedValue;
   }
 
-  saveFlashcard(){
-    console.log('[Create Flashcard] Save flashcard');
+  async presentSaveToast(){
+
+    const toast = await this.controller.toast.create({
+      message: 'Flashcard has been saved.',
+      position: 'bottom',
+      color: 'success',
+      duration: 2000
+
+    });
+    toast.present();
+  }
+
+    saveFlashcard(){
+      this.presentSaveToast();
+      console.log('[Create Flashcard] Save flashcard');
   }
 
 }

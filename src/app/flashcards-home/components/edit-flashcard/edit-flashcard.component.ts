@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { ControllersService } from 'src/app/services/controllers.service';
 
 @Component({
   selector: 'app-edit-flashcard',
@@ -11,17 +11,17 @@ export class EditFlashcardComponent implements OnInit {
   type = 'CONVERSATION';
 
 
-  constructor(private modalController: ModalController, private alertController: AlertController) { }
+  constructor(private controller: ControllersService) { }
 
   ngOnInit() {
   }
 
   closeModal(){
-    this.modalController.dismiss();
+    this.controller.modal.dismiss();
   }
 
   async presentDeleteAlert(){
-    const alert = await this.alertController.create({
+    const alert = await this.controller.alert.create({
       message: 'Are you sure you want to delete this flashcard?',
       buttons: ['Yes', 'No']
     });
