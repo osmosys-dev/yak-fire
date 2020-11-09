@@ -2,15 +2,45 @@
   <ion-back-button defaultHref></ion-back-button>
 </app-header>
 
-<ion-content>
-  <cards-list
-    headerTitle="Flashcards"
-    noCardTitle="No Flashcard found"
-    noCardSubtitle="Add a flashcard to start"
-    collection="true"
-  >
-    <flash-card></flash-card>
-  </cards-list>
+<ion-content class="ion-padding-top">
+  <ion-segment value="CONVERSATION" [(ngModel)]="type">
+    <ion-segment-button value="CONVERSATION">
+      <ion-label>Conversation</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="VERB">
+      <ion-label>Verb</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="VOCABULARY">
+      <ion-label>Vocabulary</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container [ngSwitch]="type">
+    <cards-list
+      *ngSwitchCase="'CONVERSATION'"
+      noCardTitle="No Flashcard found"
+      noCardSubtitle="Add a flashcard to start"
+      collection="true"
+    >
+      <flash-card></flash-card>
+    </cards-list>
+    <cards-list
+      *ngSwitchCase="'VERB'"
+      noCardTitle="No Flashcard found"
+      noCardSubtitle="Add a flashcard to start"
+      collection="true"
+    >
+      <flash-card></flash-card>
+    </cards-list>
+    <cards-list
+      *ngSwitchCase="'VOCABULARY'"
+      noCardTitle="No Flashcard found"
+      noCardSubtitle="Add a flashcard to start"
+      collection="true"
+    >
+      <flash-card></flash-card>
+    </cards-list>
+  </ng-container>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="primary" (click)="showCreateModal()">

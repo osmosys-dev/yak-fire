@@ -1,5 +1,4 @@
 import {  Component, OnInit } from '@angular/core';
-import { AnimationController } from '@ionic/angular';
 import { ControllersService } from 'src/app/services/controllers.service';
 
 
@@ -15,8 +14,7 @@ export class CreateFlashcardComponent implements OnInit {
 
   constructor(private controller: ControllersService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   closeModal(){
     this.controller.modal.dismiss();
@@ -27,15 +25,17 @@ export class CreateFlashcardComponent implements OnInit {
   }
 
   async presentSaveToast(){
-
     const toast = await this.controller.toast.create({
-      message: 'Flashcard has been saved.',
+      message: 'Flashcard has been successfully saved.',
       position: 'bottom',
       color: 'success',
-      duration: 2000
-
+      duration: 2000,
+      cssClass: 'app-toast',
     });
-    toast.present();
+    await toast.present();
+    await toast.onDidDismiss().then(() => {
+      this.closeModal();
+    });
   }
 
     saveFlashcard(){

@@ -9,6 +9,8 @@ import { CreateFlashcardComponent } from './components/create-flashcard/create-f
 })
 export class FlashcardsHomePage implements OnInit {
 
+  type = 'CONVERSATION';
+
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {
