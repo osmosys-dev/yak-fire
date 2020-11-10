@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { CreateLanguageComponent } from './components/create-language/create-language.component';
+import { ControllersService } from '../services/controllers.service';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +8,39 @@ import { CreateLanguageComponent } from './components/create-language/create-lan
 })
 export class HomePage implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  constructor(private controller: ControllersService) { }
 
   ngOnInit() {}
 
-  async showCreateModal(){
-    const modal = await this.modalController.create({
-      component: CreateLanguageComponent
+  async showCreateAlert(){
+    const alert = await this.controller.alert.create({
+      message: 'Add a new language',
+      inputs: [
+        {
+          name: 'language',
+          type: 'text',
+          placeholder: 'Language name'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Add',
+          handler: () => this.presentSaveToast()
+        }
+      ]
     });
-    await modal.present();
+    await alert.present();
+  }
+
+  async presentSaveToast(){
+    const toast = await this.controller.toast.create({
+      message: 'Language has been successfully created.',
+      position: 'bottom',
+      color: 'success',
+      duration: 2000,
+      cssClass: 'app-toast',
+    });
+    await toast.present();
   }
 
 }

@@ -10,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { HomePage } from './home.page';
 import { LanguageCardComponent } from './components/language-card/language-card.component';
-import { CreateLanguageComponent } from './components/create-language/create-language.component';
 
 @NgModule({
   imports: [
@@ -20,6 +19,6 @@ import { CreateLanguageComponent } from './components/create-language/create-lan
     HomePageRoutingModule,
     SharedModule
   ],
-  declarations: [HomePage, LanguageCardComponent, CreateLanguageComponent]
+  declarations: [HomePage, LanguageCardComponent]
 })
 export class HomePageModule {}

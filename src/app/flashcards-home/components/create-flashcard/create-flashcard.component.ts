@@ -26,7 +26,7 @@ export class CreateFlashcardComponent implements OnInit {
 
   async presentSaveToast(){
     const toast = await this.controller.toast.create({
-      message: 'Flashcard has been successfully saved.',
+      message: 'Flashcard has been successfully created.',
       position: 'bottom',
       color: 'success',
       duration: 2000,
